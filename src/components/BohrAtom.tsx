@@ -32,8 +32,7 @@ const BohrAtom: React.FC<BohrAtomProps> = ({
         const orbitRadius = radii[index]
         const electronCount = electronsPerOrbit[index] ?? 0
         return (
-          <group key={`orbit-${index}`}> 
-          <group key={`orbit-${index}`}>  
+          <group key={`orbit-${index}`}>
             <Torus args={[orbitRadius, 0.02, 16, 100]} rotation={[Math.PI / 2, 0, 0]}>
               <meshStandardMaterial color="gray" />
             </Torus>
