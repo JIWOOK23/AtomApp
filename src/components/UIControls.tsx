@@ -58,34 +58,17 @@ const UIControls: React.FC = () => {
 
         <FormControl fullWidth>
           <InputLabel id="type-label">Particle</InputLabel>
-          <Select labelId="type-label" value={type} label="Particle" onChange={(e) => setType(e.target.value as any)}>
+          <Select
+            labelId="type-label"
+            value={type}
+            label="Particle"
+            onChange={(e) => setType(e.target.value as any)}
+          >
             <MenuItem value="electron">Electron</MenuItem>
             <MenuItem value="proton">Proton</MenuItem>
             <MenuItem value="neutral">Neutral</MenuItem>
           </Select>
         </FormControl>
-import { Slider, Typography, Stack, Paper } from '@mui/material'
-import { currentElectronOrbitAtom } from '../state/atoms'
-
-const UIControls: React.FC = () => {
-  const [orbit, setOrbit] = useAtom(currentElectronOrbitAtom)
-
-  const handleChange = (_: Event, value: number | number[]) => {
-    setOrbit(Array.isArray(value) ? value[0] : value)
-  }
-
-  return (
-    <Paper sx={{ position: 'absolute', top: 16, left: 16, p: 2 }}>
-      <Stack spacing={2} width={200}>
-        <Typography>Electron Orbit: {orbit}</Typography>
-        <Slider
-          value={orbit}
-          min={1}
-          max={3}
-          step={1}
-          onChange={handleChange}
-          marks
-        />
       </Stack>
     </Paper>
   )
