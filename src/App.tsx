@@ -10,5 +10,6 @@ const App: React.FC = () => {
       <UIControls />
     </Provider>
   )
+}
 
 export default App
