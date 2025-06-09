@@ -1,6 +1,9 @@
 import React from 'react'
 import { GroupProps } from '@react-three/fiber'
 import { Sphere, Torus } from '@react-three/drei'
+import { useAtom } from 'jotai'
+import { currentElectronOrbitAtom } from '../state/atoms'
+import Electron from './Electron'
 
 export interface BohrAtomProps extends GroupProps {
   orbitCount: number
@@ -16,6 +19,7 @@ const BohrAtom: React.FC<BohrAtomProps> = ({
   electronRadius,
   ...groupProps
 }) => {
+  const [currentOrbit] = useAtom(currentElectronOrbitAtom)
   const maxOrbits = Math.min(orbitCount, 3)
   const radii = [1.5, 2.5, 3.5]
 
@@ -28,7 +32,7 @@ const BohrAtom: React.FC<BohrAtomProps> = ({
         const orbitRadius = radii[index]
         const electronCount = electronsPerOrbit[index] ?? 0
         return (
-          <group key={`orbit-${index}`}>
+          <group key={`orbit-${index}`}>  
             <Torus args={[orbitRadius, 0.02, 16, 100]} rotation={[Math.PI / 2, 0, 0]}>
               <meshStandardMaterial color="gray" />
             </Torus>
@@ -49,6 +53,9 @@ const BohrAtom: React.FC<BohrAtomProps> = ({
           </group>
         )
       })}
+      {currentOrbit > 0 && currentOrbit <= radii.length && (
+        <Electron targetRadius={radii[currentOrbit - 1]} size={electronRadius} />
+      )}
     </group>
   )
 }
