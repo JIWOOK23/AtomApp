@@ -11,6 +11,7 @@ import {
   MenuItem,
   Button,
 } from '@mui/material'
+import { colors } from '../theme'
 import {
   currentElectronOrbitAtom,
   orbitCountAtom,
@@ -86,7 +87,16 @@ const UIControls: React.FC = () => {
   }
 
   return (
-    <Paper sx={{ position: 'absolute', top: 16, left: 16, p: 2 }}>
+    <Paper
+      sx={{
+        position: 'absolute',
+        top: 16,
+        left: 16,
+        p: 2,
+        backgroundColor: 'rgba(0,0,30,0.6)',
+        color: colors.electron,
+      }}
+    >
       <Stack spacing={2} width={240}>
         <Typography>Active Orbit: {orbit}</Typography>
         <Slider
