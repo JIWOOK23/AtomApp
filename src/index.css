@@ -1,4 +1,11 @@
 body {
   margin: 0;
   font-family: system-ui, sans-serif;
+  background-color: #000014;
+  color: #33fffe;
+  overflow: hidden;
+}
+
+canvas {
+  background: radial-gradient(circle at center, #001d2d, #000014 80%);
 }

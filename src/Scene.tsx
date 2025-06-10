@@ -11,7 +11,10 @@ const Scene: React.FC = () => {
   const electronConfig = useAtomValue(electronConfigAtom)
 
   return (
-    <Canvas camera={{ position: [0, 5, 10], fov: 50 }}>
+    <Canvas
+      camera={{ position: [0, 5, 10], fov: 50 }}
+      style={{ background: 'transparent' }}
+    >
       <ambientLight intensity={0.5} />
       <pointLight position={[10, 10, 10]} />
       <BohrAtom

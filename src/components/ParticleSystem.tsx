@@ -12,6 +12,7 @@ import {
   ParticleData,
 } from '../state/atoms'
 import { useFrame } from '@react-three/fiber'
+import { colors } from '../theme'
 
 export interface ParticleSystemProps {
   particleCount?: number
@@ -21,9 +22,9 @@ export interface ParticleSystemProps {
 }
 
 const colorMap = {
-  electron: 'skyblue',
-  proton: 'red',
-  neutral: 'gray',
+  electron: colors.particleElectron,
+  proton: colors.particleProton,
+  neutral: colors.particleNeutral,
 } as const
 
 const ParticleSystem: React.FC<ParticleSystemProps> = ({

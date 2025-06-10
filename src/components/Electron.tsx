@@ -2,6 +2,7 @@ import React, { useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { Sphere } from '@react-three/drei'
 import * as THREE from 'three'
+import { colors } from '../theme'
 
 export interface ElectronProps {
   targetRadius: number
@@ -24,7 +25,11 @@ const Electron: React.FC<ElectronProps> = ({ targetRadius, speed = 1, size }) =>
 
   return (
     <Sphere ref={meshRef} args={[size, 16, 16]}>
-      <meshStandardMaterial color="skyblue" />
+      <meshStandardMaterial
+        color={colors.electron}
+        emissive={colors.electron}
+        emissiveIntensity={1}
+      />
     </Sphere>
   )
 }

@@ -4,6 +4,7 @@ import { Sphere, Torus } from '@react-three/drei'
 import { useAtom } from 'jotai'
 import { currentElectronOrbitAtom } from '../state/atoms'
 import Electron from './Electron'
+import { colors } from '../theme'
 
 export interface BohrAtomProps extends GroupProps {
   orbitCount: number
@@ -26,7 +27,11 @@ const BohrAtom: React.FC<BohrAtomProps> = ({
   return (
     <group {...groupProps}>
       <Sphere args={[nucleusRadius, 32, 32]}>
-        <meshStandardMaterial color="orange" />
+        <meshStandardMaterial
+          color={colors.nucleus}
+          emissive={colors.nucleus}
+          emissiveIntensity={0.5}
+        />
       </Sphere>
       {Array.from({ length: maxOrbits }).map((_, index) => {
         const orbitRadius = radii[index]
@@ -34,7 +39,13 @@ const BohrAtom: React.FC<BohrAtomProps> = ({
         return (
           <group key={`orbit-${index}`}>
             <Torus args={[orbitRadius, 0.02, 16, 100]} rotation={[Math.PI / 2, 0, 0]}>
-              <meshStandardMaterial color="gray" />
+              <meshStandardMaterial
+                color={colors.orbit}
+                emissive={colors.orbit}
+                emissiveIntensity={0.3}
+                transparent
+                opacity={0.5}
+              />
             </Torus>
             {Array.from({ length: electronCount }).map((__, eIndex) => {
               const angle = (eIndex / electronCount) * Math.PI * 2
@@ -46,7 +57,11 @@ const BohrAtom: React.FC<BohrAtomProps> = ({
                   args={[electronRadius, 16, 16]}
                   position={[x, 0, z]}
                 >
-                  <meshStandardMaterial color="skyblue" />
+                  <meshStandardMaterial
+                    color={colors.electron}
+                    emissive={colors.electron}
+                    emissiveIntensity={0.8}
+                  />
                 </Sphere>
               )
             })}
